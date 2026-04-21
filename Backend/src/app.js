@@ -6,6 +6,7 @@ import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import { config } from "./config/config.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import cors from "cors";
 
 const app = express();
 
@@ -14,6 +15,12 @@ const __dirname = path.dirname(__filename);
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(
+  cors({
+    origin: "https://luxelayer.onrender.com",
+    credentials: true,
+  }),
+);
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 

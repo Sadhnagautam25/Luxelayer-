@@ -501,9 +501,9 @@ export const authGoogleCallback = async (req, res, next) => {
     // 3️⃣ Cookie setup (PRODUCTION SAFE)
     res.cookie("token", token, {
       httpOnly: true,
-      secure: config.NODE_ENV === "production",
-      sameSite: "none", // cross-domain frontend/backend
-      path: "/", // 🔥 important fix (ensures cookie available everywhere)
+      secure: true, // 🔥 MUST be true on Render (HTTPS)
+      sameSite: "none",
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
