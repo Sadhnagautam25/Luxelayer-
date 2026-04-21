@@ -1,0 +1,535 @@
+// LUXELAYER PREMIUM SELLER DASHBOARD STYLES
+// -----------------------------------------
+@import "../styles/LuxeLayerVariables.scss";
+
+
+// 2. Main Dashboard Wrapper
+.seller-dashboard {
+  background: $pearl;
+  min-height: 100vh;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: $dark;
+  padding-bottom: 1px;
+
+  // --- NAVIGATION TABS ---
+  .dashboard-tabs {
+    display: flex;
+    justify-content: center;
+    background: $white;
+    gap: 50px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+
+    button {
+      background: none;
+      border: none;
+      padding: 20px 0;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      color: #aaa;
+      cursor: pointer;
+      position: relative;
+      transition: $transition-smooth;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: $primary-gold;
+        transition: $transition-smooth;
+        transform: translateX(-50%);
+      }
+
+      &.active {
+        color: $dark;
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &:hover {
+        color: $primary-gold;
+      }
+    }
+  }
+
+  // --- SHOP HEADER (Banner & Logo) ---
+  .shop-header {
+    background: $white;
+    position: relative;
+    // padding-bottom: 40px;
+
+    .banner-wrapper {
+      height: 300px;
+      position: relative;
+      overflow: hidden;
+      @media (max-width: 768px) {
+        height: 220px;
+      }
+
+      .shop-banner {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 10s ease;
+      }
+
+      .banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.1),
+          rgba(0, 0, 0, 0.4)
+        );
+      }
+    }
+
+    .header-content {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: flex-start;
+      gap: 35px;
+      position: relative;
+      z-index: 10;
+
+      // Fixing the content from going over the banner too much
+      transform: translateY(-80px);
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        transform: translateY(-50px);
+        padding: 0 20px;
+      }
+
+      .logo-container {
+        width: 150px;
+        height: 150px;
+        background: $white;
+        border-radius: 2px; // Classic square boutique look
+        padding: 12px;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        flex-shrink: 0;
+        border: 1px solid rgba(0, 0, 0, 0.03);
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+
+      .brand-meta {
+        flex: 1;
+        margin-top: 100px; // Spacing so text stays below banner visual line
+
+        @media (max-width: 768px) {
+          margin-top: 20px;
+        }
+
+        h1 {
+          font-family: "Playfair Display", serif;
+          font-size: 2rem;
+          margin-bottom: 10px;
+          font-weight: 500;
+          letter-spacing: -1.2px;
+          line-height: 1;
+        }
+
+        .description {
+          font-size: 1rem;
+          color: $text-light;
+          max-width: 700px;
+          line-height: 1.8;
+          font-weight: 300;
+        }
+
+        .location {
+          display: inline-block;
+          margin-top: 15px;
+          color: $primary-gold;
+          font-weight: 600;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 1.5px;
+          border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+        }
+      }
+
+      .create-product-btn {
+        margin-top: 115px;
+        background: $dark;
+        color: $white;
+        border: 1px solid $dark;
+        padding: 18px 40px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.7rem;
+        cursor: pointer;
+        transition: $transition-smooth;
+
+        &:hover {
+          background: transparent;
+          color: $dark;
+          transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+          margin-top: 30px;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // --- ANALYTICS BAR ---
+  .analytics-bar {
+    max-width: 1200px;
+    margin: -20px auto 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px; // Creating subtle borders
+    background: $border-light;
+
+    border: 1px solid $border-light;
+    box-shadow: $shadow-premium;
+
+    .stat-card {
+      background: $white;
+      padding: 35px 20px;
+      text-align: center;
+
+      label {
+        display: block;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        color: #999;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        font-weight: 600;
+      }
+
+      .value {
+        font-size: 1.1rem;
+        font-weight: 500;
+        font-family: "Playfair Display", serif;
+
+        &.active {
+          color: #17db68;
+          &::before {
+            content: "• ";
+            font-size: 1.1rem;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      margin: 20px;
+    }
+  }
+
+  // --- PRODUCT GRID (BOUTIQUE STYLE) ---
+  .product-management {
+    max-width: 1250px;
+    margin: 0 auto 100px;
+    padding: 0 40px;
+
+    .section-header {
+      margin-bottom: 60px;
+      text-align: left;
+
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 2.5rem;
+        font-weight: 400;
+        font-style: italic;
+      }
+
+      .gold-line {
+        width: 100px;
+        height: 1px;
+        background: $primary-gold;
+        margin-top: 15px;
+      }
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 60px 40px;
+
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      cursor: pointer;
+      background: transparent;
+      background: #fff;
+
+      .image-box {
+        height: 480px;
+        position: relative;
+        overflow: hidden;
+        background: #f8f8f8;
+
+        @media (max-width: 768px) {
+          height: 400px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .hover-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(4px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          visibility: hidden;
+          transition: $transition-smooth;
+
+          .edit-pen {
+            position: absolute;
+            top: 4%;
+            right: 5%;
+
+            /* Size and Shape */
+            width: 36px; /* Slightly larger for a better hit target */
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px; /* Smoother "squircle" look */
+            color: white;
+
+            /* Glassmorphism & Styling */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(
+              8px
+            ); /* Blurs the content behind the button */
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Soft white border */
+
+            /* Depth */
+            box-shadow:
+              0 4px 15px rgba(0, 0, 0, 0.2),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+            cursor: pointer;
+            z-index: 10;
+
+            /* Performance-optimized transition */
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          .edit-pen:hover {
+            background: #d8ad5d; /* Solid color for contrast */
+            color: #2e2e2e;
+            transform: translateY(-2px) scale(1.05); /* Lifts up slightly */
+            box-shadow: 0 6px 20px rgba(216, 173, 93, 0.4); /* Glow effect matching the gold */
+            border-color: rgba(216, 173, 93, 0.5);
+          }
+
+          .edit-pen:active {
+            transform: translateY(0) scale(0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          }
+
+          /* Optional: If you're using an SVG inside, make it scale too */
+          .edit-pen svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.2s ease;
+          }
+
+          .detail-btn {
+            background: $dark;
+            color: $white;
+            border: none;
+            padding: 16px 32px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transform: translateY(30px);
+            transition: $transition-smooth;
+
+            &:hover {
+              background: $primary-gold;
+            }
+          }
+        }
+      }
+
+      &:hover {
+        .image-box img {
+          transform: scale(1.1);
+        }
+        .hover-overlay {
+          opacity: 1;
+          visibility: visible;
+          .detail-btn {
+            transform: translateY(0);
+          }
+        }
+      }
+
+      .info-box {
+        padding: 10px 0;
+        text-align: center;
+
+        h3 {
+          font-family: "Playfair Display", serif;
+          font-size: 1.35rem;
+          margin-bottom: 10px;
+          font-weight: 400;
+        }
+
+        .price {
+          color: $primary-gold;
+          font-weight: 500;
+          font-size: 1.1rem;
+          letter-spacing: 1px;
+        }
+      }
+    }
+  }
+
+  // --- SETTINGS VIEW (CLEAN FORM) ---
+
+  // --- LOADING STATE ---
+  .loading-state {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: $primary-gold;
+  }
+}
+
+// Variables provided are used here
+.delete-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px); // Softens the background for a premium feel
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+
+  .delete-box {
+    background: $white;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 4px; // Sharp luxury edges
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    border-top: 4px solid $danger; // Red indicator for danger actions
+
+    animation: premiumPopupSlide 0.4s cubic-bezier(0.165, 0.84, 0.44, 1)
+      forwards;
+
+    h3 {
+      font-family: "Playfair Display", serif;
+      color: $dark;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: $text-light;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+
+      button {
+        flex: 1;
+        padding: 14px;
+        border: none;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-size: 0.75rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .cancel-btn {
+        background: $pearl;
+        color: $dark;
+        border: 1px solid transparent;
+
+        &:hover {
+          background: $white;
+          border-color: $dark;
+        }
+      }
+
+      .delete-btn {
+        background: $danger;
+        color: $white;
+
+        &:hover {
+          background: darken($danger, 10%);
+          transform: translateY(-2px);
+          box-shadow: 0 5px 15px rgba($danger, 0.3);
+        }
+      }
+    }
+  }
+}
+
+// Matching the animation from the success popup for consistency
+@keyframes premiumPopupSlide {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

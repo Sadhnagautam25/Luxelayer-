@@ -1,0 +1,61 @@
+// =========================
+// 🎨 Premium Color System
+// =========================
+
+// Primary Brand Colors
+$primary-gold: #c5a059;
+$gold-light: #ecd299;
+$gold-gradient: linear-gradient(135deg, #c5a059 0%, #ecd299 100%);
+
+// Neutral / Backgrounds
+$white: #ffffff;
+$pearl: #fdfbf8;
+$soft-pearl: #f4f2ee;
+$soft-gray: #f9f9f9;
+
+// Text Colors
+$text-dark: #1a1a1a;
+$text-main: #222222;
+$text-light: #747373;
+$text-muted: #666666;
+
+// Borders
+$border-soft: #f1ede8;
+$border-light: #eeeeee;
+
+// Status Colors
+$success-green: #2ca132;
+$error-red: #d32f2f;
+$danger-red: #e74c3c;
+$success: #27ae60;
+$danger: #d9534f;
+
+// Dark Theme (Optional System)
+$surface-100: #1e1e1e;
+$surface-200: #252525;
+$surface-300: #2d2d2d;
+$text-primary: #f5f5f5;
+$text-secondary: #a0a0a0;
+
+// Accent / UI
+$accent-gold: #af935d;
+$black: #0f0f0f;
+$dark: #111111;
+$charcoal: #1a1a1a;
+$slate: #4a4a4a;
+$dot-color: #000;
+
+// Backgrounds
+$bg-light: #f9f9f9;
+$bg-pearl: #fdfbf8;
+$bg-overlay: rgba(255, 255, 255, 0.9);
+
+// Shadows
+$shadow-soft: 0 15px 45px rgba(0, 0, 0, 0.04);
+$shadow-premium: 0 30px 60px rgba(0, 0, 0, 0.08);
+$shadow-elegant: 0 20px 40px rgba(0, 0, 0, 0.06);
+
+// Transitions
+$transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$transition-smooth: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+$transition-slow: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);

@@ -1,0 +1,25 @@
+
+// Variables
+
+// Colors
+$black: #050505;
+$black-pearl: #0a0a0b;
+$white: #ffffff;
+$gold: #c5a059;
+$error-red: #ff4d4d;
+
+// Gradients
+$gold-gradient: linear-gradient(135deg, #c5a059 0%, #edd4a1 100%);
+
+// Text
+$text-dim: rgba(255, 255, 255, 0.6); // you can change to #888 if you prefer
+
+// Glass Effect
+$glass: rgba(255, 255, 255, 0.03);
+$glass-border: rgba(255, 255, 255, 0.1);
+$glass-bg: rgba(15, 15, 15, 0.75);
+
+// Shadow
+$premium-shadow:
+  0 20px 40px rgba(0, 0, 0, 0.4),
+  inset 0 0 0 1px rgba(255, 255, 255, 0.05);

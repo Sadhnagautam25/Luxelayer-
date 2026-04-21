@@ -1,0 +1,134 @@
+// Brand Variables
+@import "../styles/LuxeLayerVariables.scss";
+.not-found-wrapper {
+  min-height: 100vh;
+  background-color: $soft-pearl;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+
+  .container {
+    max-width: 600px;
+    width: 100%;
+  }
+}
+
+.brand-header {
+  margin-bottom: 4rem;
+
+  .logo {
+    font-size: 1.5rem;
+    letter-spacing: 0.4rem;
+    font-weight: 300;
+    color: $text-dark;
+    text-transform: uppercase;
+  }
+}
+
+.error-content {
+  background: $white;
+  padding: 4rem 2rem;
+  border: 1px solid $border-soft;
+  box-shadow: $shadow-premium;
+  border-radius: 4px; // Slight rounding for a premium card look
+
+  .error-badge {
+    color: $primary-gold;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 0.85rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    color: $text-dark;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .description {
+    color: $text-light;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.action-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+
+  @media (min-width: 480px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: $primary-gold;
+    color: $white;
+    border: none;
+    padding: 1rem 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: $transition-smooth;
+    width: 100%;
+    max-width: 240px;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba($primary-gold, 0.3);
+      filter: brightness(1.05);
+    }
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: $text-dark;
+    border: 1px solid $text-dark;
+    padding: 1rem 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: $transition-smooth;
+    width: 100%;
+    max-width: 240px;
+
+    &:hover {
+      background: $text-dark;
+      color: $white;
+    }
+  }
+}
+
+.footer-minimal {
+  margin-top: 4rem;
+  font-size: 0.75rem;
+  color: $text-light;
+  letter-spacing: 0.05rem;
+}
+
+// Responsive Adjustments
+@media (max-width: 768px) {
+  .error-content {
+    padding: 3rem 1.5rem;
+
+    .title {
+      font-size: 2rem;
+    }
+  }
+}

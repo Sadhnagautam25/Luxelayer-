@@ -1,0 +1,174 @@
+// Refined Palette
+@import "../styles/LuxeLayerVariables.scss";
+.editModalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+
+  .editModal {
+    background: $surface-100;
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    border-radius: 16px;
+    border: 1px solid $border-light;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    overflow-y: auto;
+    color: $text-primary;
+
+    .editModalHeader {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid $border-light;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      background: $surface-100;
+      z-index: 2;
+
+      h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin: 0;
+        color: $primary-gold;
+      }
+
+      button {
+        background: $surface-200;
+        border: none;
+        color: $text-secondary;
+        padding: 8px;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.2s;
+        &:hover { color: #fff; background: $surface-300; }
+      }
+    }
+
+    .editForm {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+
+      // Clean Label/Section titles
+      .sectionTitle {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: $text-secondary;
+        margin-top: 10px;
+        display: block;
+      }
+
+      input, textarea, select {
+        background: $surface-200;
+        border: 1px solid $border-light;
+        border-radius: 10px;
+        padding: 0.85rem 1rem;
+        color: $text-primary;
+        font-size: 0.95rem;
+        width: 100%;
+        transition: border-color 0.2s;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-gold;
+        }
+
+        &::placeholder { color: #555; }
+      }
+
+      .sizeRow {
+        display: flex;
+        gap: 10px;
+        background: rgba(255,255,255,0.03);
+        padding: 8px;
+        border-radius: 10px;
+        
+        input:first-child { 
+          width: 80px; 
+          background: transparent; 
+          border: none; 
+          color: $primary-gold;
+          font-weight: 600;
+        }
+      }
+
+      .imageGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 12px;
+
+        .imgCard {
+          aspect-ratio: 1;
+          border-radius: 12px;
+          overflow: hidden;
+          background: $surface-200;
+          position: relative;
+          border: 1px solid $border-light;
+
+          img { width: 100%; height: 100%; object-fit: cover; }
+
+          button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 77, 77, 0.2);
+            color: $error-red;
+            border: none;
+            padding: 4px;
+            border-radius: 6px;
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            &:hover { background: $error-red; color: white; }
+          }
+        }
+      }
+
+      input[type="file"] {
+        border: 2px dashed $border-light;
+        padding: 2rem;
+        text-align: center;
+        background: transparent;
+        cursor: pointer;
+        &:hover { border-color: $primary-gold; background: rgba(255,255,255,0.02); }
+      }
+
+      .updateBtn {
+        background: $primary-gold;
+        color: #1a1a1a;
+        padding: 1rem;
+        border: none;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: transform 0.2s, opacity 0.2s;
+        margin-top: 1rem;
+
+        &:hover { opacity: 0.9; transform: translateY(-1px); }
+        &:active { transform: translateY(0); }
+        &:disabled { background: #444; color: #888; cursor: not-allowed; }
+      }
+
+      .errorText { color: $error-red; font-size: 0.8rem; margin-top: -10px; }
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 500px) {
+  .editModalOverlay {
+    padding: 0;
+    .editModal { border-radius: 0; height: 100%; max-height: 100vh; }
+    .editForm { padding: 1.25rem; }
+  }
+}

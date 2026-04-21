@@ -1,0 +1,211 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap");
+
+@import "../styles//AuthVariables.scss";
+
+// Reset & Scroll Control
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; // Prevents the screen from scrolling
+
+  ::-webkit-scrollbar {
+    display: none;
+    
+  }
+}
+
+.verify-container {
+  display: flex;
+  height: 100vh; // Fixed height to prevent scroll
+  width: 100vw;
+  background-color: $black-pearl;
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  overflow: hidden;
+
+  // Left Side: Immersive Visual
+  .visual-section {
+    flex: 1.2;
+    position: relative;
+    background: url("https://images.unsplash.com/photo-1567777301743-3b7ef158aadf?q=80&w=2024&auto=format&fit=crop")
+      center/cover;
+    display: none;
+
+    @media (min-width: 1024px) {
+      display: block;
+      animation: kenBurns 20s infinite alternate ease-in-out;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, transparent, $black-pearl);
+    }
+  }
+
+  // Right Side: Editorial Content
+  .content-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 8%;
+    z-index: 2;
+    background: $black-pearl;
+
+    .brand-logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.2rem;
+      background: $gold-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+}
+
+.text-group {
+  margin-bottom: 3.5rem;
+
+  h1 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 200;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+
+    span {
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      display: block;
+      font-weight: 700;
+      background: $gold-gradient;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 0.5rem;
+    }
+  }
+
+  p {
+    color: $text-dim;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    max-width: 420px;
+    font-weight: 300;
+
+    strong {
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 320px;
+
+  // Primary Button with Shimmer Effect
+  .btn-primary {
+    position: relative;
+    background: $gold-gradient;
+    color: #000;
+    border: none;
+    padding: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(197, 160, 89, 0.2);
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
+      );
+      transform: skewX(-25deg);
+      transition: 0.75s;
+    }
+
+    &:hover::before {
+      left: 150%;
+    }
+  }
+
+  // Secondary Button with Gold Border
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid #c5a059; // Using gold from gradient
+    color: #edd4a1;
+    padding: 18px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.4s ease;
+
+    &:hover:not(:disabled) {
+      background: rgba(197, 160, 89, 0.05);
+      border-color: #edd4a1;
+      letter-spacing: 3px;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      border-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+  }
+}
+
+.success-note {
+  margin-top: 20px;
+  font-size: 0.75rem;
+  color: #edd4a1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  animation: fadeIn 0.5s ease-out;
+}
+
+// Animations
+@keyframes kenBurns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

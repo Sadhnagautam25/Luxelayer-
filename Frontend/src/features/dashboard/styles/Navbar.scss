@@ -1,0 +1,167 @@
+@import "../styles/LuxeLayerVariables.scss";
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba($white, 0.8);
+  backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba($black, 0.05);
+  padding: 15px 0;
+
+  .nav-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo h1 {
+    font-family: "Playfair Display", serif;
+    letter-spacing: 5px;
+    font-size: 1.5rem;
+    margin: 0;
+
+    @media (max-width: 600px) {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+  }
+
+  .nav-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    &.desktop-only {
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .icon {
+      cursor: pointer;
+      transition: $transition-slow;
+      &:hover {
+        color: $gold-light;
+      }
+    }
+
+    .cart-wrapper {
+      position: relative;
+      .cart-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: $black;
+        color: white;
+        font-size: 0.6rem;
+        padding: 2px 5px;
+        border-radius: 50%;
+      }
+    }
+  }
+}
+
+// --- Search Bar Styling ---
+.search-box {
+  position: absolute;
+  top: 10; // Places it exactly below the navbar
+  left: 0;
+  width: 100%;
+  background: rgba($white, 0.98);
+  backdrop-filter: blur(15px);
+  padding: 30px 5%;
+  border-bottom: 1px solid rgba($black, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 999;
+
+  .search-inner {
+    width: 100%; 
+    max-width: 900px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba($black, 0.2);
+    background: transparent;
+    padding: 12px 40px; // Padding to leave room for icons/buttons
+    font-family: "Playfair Display", serif;
+    font-size: 1.4rem;
+    outline: none;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      border-bottom-color: $primary-gold; // Or $black depending on your variables
+    }
+
+    &::placeholder {
+      color: $text-light;
+      font-style: italic;
+      font-weight: 300;
+      opacity: 0.6;
+      font-size: 1.1rem;
+    }
+  }
+
+  .close-search {
+    position: absolute;
+    right: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    color: $black;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.5;
+    }
+
+    span {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-right: 8px;
+      font-weight: 600;
+      @media (max-width: 600px) {
+        display: none; // Hide "CLOSE" text on small screens
+      }
+    }
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

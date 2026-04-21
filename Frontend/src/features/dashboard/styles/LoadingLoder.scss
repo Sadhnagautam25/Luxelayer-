@@ -1,0 +1,49 @@
+
+@import "../styles//LuxeLayerVariables.scss";
+
+
+.full-screen-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $bg-overlay;
+  display: flex;
+  justify-content: center; // Horizontal center
+  align-items: center; // Vertical center
+  z-index: 9999; // Sabse upar dikhega
+}
+
+.dot-loader {
+  display: flex;
+  gap: 8px; // Dots ke beech ka gap
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    background-color: $dot-color;
+    border-radius: 50%;
+    animation: professional-bounce 0.6s infinite alternate;
+
+    // Har dot ko thoda delay denge wave effect ke liye
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+}
+
+// Keyframes for a smooth "elastic" bounce
+@keyframes professional-bounce {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-20px); // Upar ki taraf bounce
+    opacity: 0.3; // Thoda fade effect
+  }
+}

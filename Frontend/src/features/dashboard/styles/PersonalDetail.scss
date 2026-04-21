@@ -1,0 +1,246 @@
+// Variables
+@import "../styles/LuxeLayerVariables.scss";
+
+.profile-viewport {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $soft-pearl;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+}
+
+.premium-card {
+  background: $white;
+  width: 100%;
+  max-width: 550px;
+  padding: 40px;
+  box-shadow: $shadow-premium;
+  position: relative;
+  border: 1px solid $border-soft;
+
+  .edit-btn-float {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: $white;
+    border: 1px solid $border-soft;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: $transition-smooth;
+    color: $primary-gold;
+
+    &:hover {
+      background: $primary-gold;
+      color: $white;
+      transform: rotate(15deg);
+    }
+  }
+}
+
+.profile-header {
+  margin-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    font-size: 1.4rem;
+    color: $text-dark;
+    margin: 0;
+  }
+  .gold-text {
+    color: $primary-gold;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .role-badge {
+    background: #f0f0f0;
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    color: $text-light;
+  }
+}
+
+.avatar-wrapper {
+  text-align: center;
+  margin-bottom: 30px;
+
+  .image-border {
+    width: 110px;
+    height: 110px;
+    margin: 0 auto 15px;
+    border: 2px solid $primary-gold;
+    padding: 5px;
+    border-radius: 50%;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .verified-check {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: $primary-gold;
+      color: white;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+  h3 {
+    color: $text-dark;
+    margin: 0;
+  }
+  .email-sub {
+    color: $text-light;
+    font-size: 0.9rem;
+  }
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  .info-box {
+    background: $soft-pearl;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid $border-soft;
+
+    label {
+      font-size: 0.7rem;
+      color: $text-light;
+      text-transform: uppercase;
+    }
+    p {
+      margin: 5px 0 0;
+      font-weight: 600;
+      color: $text-dark;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/* --- MODAL STYLES --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .modal-content {
+    background: $white;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    animation: slideUp 0.4s ease;
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 25px;
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: $text-light;
+      }
+    }
+  }
+}
+
+.image-upload-section {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  .preview-container {
+    position: relative;
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid $primary-gold;
+    }
+    .upload-label {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background: $primary-gold;
+      color: white;
+      padding: 6px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+  }
+}
+
+.form-group {
+  margin-bottom: 15px;
+  label {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    color: $text-light;
+  }
+  input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid $border-soft;
+    border-radius: 8px;
+    background: $soft-pearl;
+    &:focus {
+      outline: none;
+      border-color: $primary-gold;
+    }
+  }
+}
+
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  background: $primary-gold;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: 600;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

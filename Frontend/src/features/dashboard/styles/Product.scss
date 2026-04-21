@@ -1,0 +1,88 @@
+@import "../styles//LuxeLayerVariables.scss";
+
+.product-grid {
+  display: grid;
+  // Responsive Grid: 4 cols on desktop, 2 on tablet, 1 on small mobile
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card {
+    .image-box {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      background: $text-light;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 1.2s ease;
+      }
+
+      .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 20px;
+        opacity: 0;
+        transition: $transition-smooth;
+
+        button {
+          background: $white;
+          border: none;
+          padding: 10px 20px;
+          font-size: 0.7rem;
+          text-transform: uppercase;
+          font-weight: 600;
+          cursor: pointer;
+          transition: $transition-smooth;
+
+          &:hover {
+            background: $black;
+            color: $white;
+          }
+        }
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.08);
+        }
+        .overlay {
+          opacity: 1;
+        }
+      }
+    }
+
+    .info {
+      padding: 15px 5px;
+      .cat {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        color: $primary-gold;
+        font-weight: 600;
+      }
+      h4 {
+        font-size: 1rem;
+        margin: 5px 0;
+        font-weight: 400;
+      }
+      .price {
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #444;
+      }
+    }
+  }
+}

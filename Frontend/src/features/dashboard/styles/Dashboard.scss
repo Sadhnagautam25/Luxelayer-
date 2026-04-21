@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap");
+
+@import "../styles//LuxeLayerVariables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: $white;
+  color: $black;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.luxelayer-container {
+  // --- Hero Section ---
+  .hero {
+    height: 80vh;
+    background:
+      linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)),
+      url("https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1600");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    text-align: center;
+
+    .hero-content {
+      .caps {
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+      }
+      h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        margin-bottom: 25px;
+      }
+      .cta-btn {
+        background: $white;
+        color: $black;
+        border: none;
+        padding: 15px 40px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: $transition-smooth;
+        &:hover {
+          background: $black;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  // --- Main Content & Grid ---
+  .main-content {
+    max-width: 1440px;
+    margin: 80px auto;
+    padding: 0 5%;
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+      }
+      p {
+        color: #888;
+        font-size: 0.9rem;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+// Utility icon button for mobile
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}

@@ -1,0 +1,267 @@
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,400&family=Syncopate:wght@400;700&display=swap");
+@import "../styles//AuthVariables.scss";
+
+.exclusive-entry {
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+  color: $white;
+
+  // 1. Dynamic Background Slider
+  .slider-container {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      // Default Desktop Position
+      background-position: center top -150px;
+      opacity: 0;
+      transform: scale(1.1);
+      transition:
+        opacity 2s ease-in-out,
+        transform 8s linear;
+
+      &.active {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 2;
+      }
+
+      // Responsive Position Adjustment
+      @media (max-width: 1024px) {
+        background-position: center top;
+      }
+      @media (max-width: 600px) {
+        background-position: center 20%; // Mobile ke liye better framing
+      }
+    }
+
+    .cinematic-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      background:
+        radial-gradient(
+          circle at center,
+          transparent 10%,
+          rgba(0, 0, 0, 0.7) 100%
+        ),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+    }
+  }
+
+  // 2. Main Content Layout
+  .main-interface {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+
+    header {
+      .eyebrow {
+        display: block;
+        font-size: 0.7rem;
+        letter-spacing: 6px;
+        margin-bottom: 15px;
+        color: $gold;
+        animation: fadeInDown 1.5s ease-out;
+      }
+
+      .logo-text {
+        font-family: "Syncopate", sans-serif;
+        font-size: clamp(1.8rem, 10vw, 5rem); // Responsive size
+        letter-spacing: clamp(10px, 4vw, 20px); // Responsive spacing
+        font-weight: 700;
+        margin-bottom: 20px;
+        animation: letterSpacing 2s cubic-bezier(0.16, 1, 0.3, 1);
+
+        // Mobile par letter-spacing adjust ki hai taaki width break na ho
+        @media (max-width: 600px) {
+          letter-spacing: 8px;
+          animation: letterSpacingMobile 2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+      }
+
+      .accent-bar {
+        width: 0;
+        height: 1px;
+        background: $gold;
+        margin: 0 auto;
+        animation: growWidth 1.5s ease-out 1s forwards;
+      }
+    }
+
+    .interaction-vault {
+      margin-top: 50px;
+      animation: fadeIn 3s ease-in;
+      width: 100%;
+
+      .manifesto {
+        font-family: "Bodoni Moda", serif;
+        font-style: italic;
+        font-size: clamp(0.9rem, 3vw, 1.2rem); // Fluid font size
+        line-height: 1.8;
+        opacity: 0.8;
+        margin-bottom: 40px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .button-cluster {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+
+        @media (max-width: 600px) {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+// 3. Premium Buttons
+.luxe-btn {
+  position: relative;
+  padding: 18px 45px;
+  font-size: 0.7rem;
+  letter-spacing: 4px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: hidden;
+  min-width: 220px; // Consistency on mobile
+
+  @media (max-width: 600px) {
+    width: 80%; // Mobile full-ish width
+    padding: 15px 30px;
+  }
+
+  &.main {
+    background: $white;
+    color: #000;
+    &:hover {
+      letter-spacing: 6px;
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &.ghost {
+    background: transparent;
+    color: $white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    &:hover {
+      background: $white;
+      color: #000;
+      border-color: $white;
+    }
+  }
+}
+
+// 4. Decorations & Keyframes
+.scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  opacity: 0.6;
+
+  .line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, $gold, transparent);
+    animation: scrollLine 2s infinite;
+  }
+  span {
+    font-size: 0.5rem;
+    letter-spacing: 3px;
+  }
+}
+
+// Animations Maintain Rakhi Hain
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes letterSpacing {
+  from {
+    letter-spacing: 40px;
+    opacity: 0;
+  }
+  to {
+    letter-spacing: 20px;
+    opacity: 1;
+  }
+}
+
+// Special Mobile Animation for Text
+@keyframes letterSpacingMobile {
+  from {
+    letter-spacing: 20px;
+    opacity: 0;
+  }
+  to {
+    letter-spacing: 8px;
+    opacity: 1;
+  }
+}
+
+@keyframes growWidth {
+  to {
+    width: clamp(60px, 10vw, 100px);
+  }
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}

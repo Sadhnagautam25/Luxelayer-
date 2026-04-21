@@ -1,0 +1,341 @@
+// Variables (As provided + Green for Success)
+@import "../styles/LuxeLayerVariables.scss";
+
+.address-page {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  background-color: $soft-pearl;
+  font-family: "Inter", sans-serif;
+
+  h2 {
+    color: $text-dark;
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    color: $text-light;
+    margin-bottom: 40px;
+  }
+
+  // --- Address List (Cards) ---
+  .address-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-bottom: 60px;
+
+    .address-card {
+      background: $white;
+      padding: 25px;
+      border: 1px solid $border-soft;
+      box-shadow: $shadow-premium;
+      transition: $transition-smooth;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-5px);
+        border-color: $primary-gold;
+      }
+
+      h4 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.1rem;
+        color: $text-dark;
+        margin-bottom: 15px;
+
+        .badge {
+          background: $success-green;
+          color: $white;
+          font-size: 0.7rem;
+          padding: 5px 10px;
+          
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
+
+      p {
+        margin-bottom: 6px;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: $text-light;
+      }
+
+      .actions {
+        margin-top: 20px;
+        display: flex;
+        gap: 12px;
+        border-top: 1px solid $border-soft;
+        padding-top: 15px;
+
+        button {
+          flex: 1;
+          padding: 8px;
+          border: none;
+          background: transparent;
+          color: $text-dark;
+          font-size: 0.85rem;
+          cursor: pointer;
+          transition: $transition-smooth;
+          border-radius: 6px;
+          font-weight: 500;
+
+          &:hover {
+            background: $border-soft;
+          }
+
+          &:nth-child(1) {
+            // Set Default
+            color: $success-green;
+            &:hover {
+              background: rgba($success-green, 0.05);
+            }
+          }
+          &:nth-child(2) {
+            // Delete
+            color: $error-red;
+            &:hover {
+              background: rgba($error-red, 0.05);
+            }
+          }
+          &:nth-child(3) {
+            // Edit
+            color: $primary-gold;
+            &:hover {
+              background: rgba($primary-gold, 0.05);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // --- Form Styling ---
+  .address-form {
+    background: $white;
+    padding: 40px;
+    box-shadow: $shadow-premium;
+    max-width: 600px;
+    margin: 0 auto;
+
+    h3 {
+      font-weight: 400;
+      margin-bottom: 25px;
+      color: $text-dark;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid $border-soft;
+        border-radius: 8px;
+        background: $soft-gray;
+        font-size: 0.95rem;
+        transition: $transition-smooth;
+        outline: none;
+
+        &:focus {
+          border-color: $primary-gold;
+          background: $white;
+          box-shadow: 0 0 0 4px rgba($primary-gold, 0.1);
+        }
+      }
+
+      textarea {
+        height: 100px;
+        resize: none;
+      }
+
+      .error-msg {
+        color: $error-red;
+        font-size: 0.8rem;
+        margin-top: -10px;
+        animation: fadeIn 0.3s ease;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        color: $text-light;
+        cursor: pointer;
+
+        input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+          cursor: pointer;
+          accent-color: $primary-gold;
+        }
+      }
+
+      button[type="submit"] {
+        margin-top: 10px;
+        padding: 14px;
+        background: $text-dark;
+        color: $white;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: $transition-smooth;
+
+        &:hover:not(:disabled) {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba($primary-gold, 0.3);
+        }
+
+        &:disabled {
+          opacity: 0.7;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+// --- Modal Styling ---
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba($text-dark, 0.6);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+
+  .modal-box {
+    background: $white;
+    width: 90%;
+    max-width: 500px;
+    padding: 35px;
+    position: relative;
+    animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    h3 {
+      margin-bottom: 25px;
+      font-weight: 400;
+      color: $text-dark;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      input,
+      textarea {
+        padding: 12px;
+        border: 1px solid $border-soft;
+        border-radius: 8px;
+        outline: none;
+        &:focus {
+          border-color: $primary-gold;
+        }
+      }
+
+      label{
+        display: flex;
+        gap: 6px;
+      }
+
+      .modal-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 10px;
+
+        button {
+          padding: 12px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: $transition-smooth;
+
+          &[type="submit"] {
+            background: $text-dark;
+            color: $white;
+            border: none;
+          }
+
+          &[type="button"] {
+            background: transparent;
+            border: 1px solid $border-soft;
+            color: $text-light;
+          }
+
+          &:hover {
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}
+
+// --- Animations ---
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// --- Responsive ---
+@media (max-width: 768px) {
+  .address-page {
+    margin: 20px auto;
+
+    h2 {
+      font-size: 1.8rem;
+    }
+
+    .address-list {
+      grid-template-columns: 1fr;
+    }
+
+    .address-form {
+      padding: 25px;
+
+      .row {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
