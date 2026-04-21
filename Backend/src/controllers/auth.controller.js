@@ -456,40 +456,39 @@ export const authGoogleCallback = async (req, res, next) => {
   try {
     const googleData = req.user;
 
+    const FRONTEND_URL = config.FRONTEND_URL;
+
     if (!googleData) {
-      return res.redirect("http://localhost:5173/login?error=google_failed");
+      return res.redirect(`${FRONTEND_URL}/login?error=google_failed`);
     }
 
-    // 🔥 Extract data
+    // 🔥 Extract data safely
     const email = googleData.emails?.[0]?.value;
     const firstName = googleData.name?.givenName;
     const lastName = googleData.name?.familyName;
     const profilePic = googleData.photos?.[0]?.value;
 
     if (!email) {
-      return res.redirect("http://localhost:5173/login?error=no_email");
+      return res.redirect(`${FRONTEND_URL}/login?error=no_email`);
     }
 
-    // 1️⃣ Check user
+    // 1️⃣ Find or Create user (clean pattern)
     let user = await userModel.findOne({ email });
 
     if (!user) {
-      // 2️⃣ Create user (Google)
       user = await userModel.create({
         FirstName: firstName || "GoogleUser",
         Lastname: lastName || "",
         email,
-        googleId: googleData.id, // 🔥 important
+        googleId: googleData.id,
         profile: profilePic,
         isVerified: true,
       });
 
       console.log("New Google user created ✅");
-    } else {
-      console.log("User already exists → Login ✅");
     }
 
-    // 3️⃣ Generate JWT
+    // 2️⃣ JWT generate
     const token = jwt.sign(
       {
         id: user._id,
@@ -499,17 +498,19 @@ export const authGoogleCallback = async (req, res, next) => {
       { expiresIn: "7d" },
     );
 
-    // 4️⃣ Save token in cookie (🔥 IMPORTANT CONFIG)
+    // 3️⃣ Cookie setup (PRODUCTION SAFE)
     res.cookie("token", token, {
-      httpOnly: true, // JS se access nahi hoga (secure)
-      secure: config.NODE_ENV === "development", // https only in prod
-      sameSite: "strict", // CSRF protection
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      httpOnly: true,
+      secure: config.NODE_ENV === "production",
+      sameSite: "none", // cross-domain frontend/backend
+      path: "/", // 🔥 important fix (ensures cookie available everywhere)
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    // 5️⃣ Redirect
-    return res.redirect("http://localhost:5173/dashboard");
+    // 4️⃣ Redirect safely
+    return res.redirect(`${FRONTEND_URL}/dashboard`);
   } catch (error) {
-    next(error);
+    console.error("Google Auth Error:", error);
+    return res.redirect(`${config.FRONTEND_URL}/login?error=server_error`);
   }
 };
