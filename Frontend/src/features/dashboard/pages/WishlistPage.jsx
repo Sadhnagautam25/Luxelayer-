@@ -6,6 +6,7 @@ import useWishlist from "../Hooks/useWishlist";
 import useCart from "../Hooks/useCart";
 import Navbar from "../components/Navbar";
 import "../styles/WishlistPage.scss";
+import Footer from "../components/Footer";
 
 const WishlistPage = () => {
   const navigate = useNavigate();
@@ -137,6 +138,8 @@ const WishlistPage = () => {
           </div>
         )}
       </div>
+
+      <Footer />
     </>
   );
 };

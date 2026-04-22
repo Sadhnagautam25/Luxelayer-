@@ -8,6 +8,9 @@ import {
   Truck,
   ShieldCheck,
   ChevronRight,
+  RotateCcw,
+  Star,
+  MessageSquare,
 } from "lucide-react";
 
 import { clearSingleProduct } from "../states/product.slice";
@@ -17,6 +20,8 @@ import useWishlist from "../Hooks/useWishlist";
 
 import Navbar from "../components/Navbar";
 import "../styles/ProductVeiw.scss";
+import Footer from "../components/Footer";
+import LoadingLoader from "../components/LoadingLoder"
 
 const ProductVeiw = () => {
   const { id } = useParams();
@@ -119,7 +124,7 @@ const ProductVeiw = () => {
   }, [id]);
 
   // ---------------- LOADER ----------------
-  if (!singleProduct) return <div className="loader">LUXELAYER</div>;
+  if (!singleProduct) return <div className="loader"> <LoadingLoader/> </div>;
 
   return (
     <div className="product-page">
@@ -237,16 +242,97 @@ const ProductVeiw = () => {
               {/* TRUST */}
               <footer className="trust-footer">
                 <div className="item">
-                  <Truck size={18} /> Complimentary Shipping
+                  <Truck size={18} />
+                  <span>
+                    <strong>Complimentary Shipping:</strong> On all orders above
+                    $500
+                  </span>
                 </div>
-
                 <div className="item">
-                  <ShieldCheck size={18} /> Verified Authenticity
+                  <ShieldCheck size={18} />
+                  <span>
+                    <strong>Verified Authenticity:</strong> 100% Genuine
+                    LuxeLayer product
+                  </span>
+                </div>
+                <div className="item">
+                  <RotateCcw size={18} />
+                  <span>
+                    <strong>Easy Returns:</strong> 14-day premium return policy
+                  </span>
                 </div>
               </footer>
             </div>
           </section>
         </div>
+
+        {/* REVIEWS SECTION */}
+        <section className="reviews-section">
+          <div className="section-header">
+            <h2 className="section-title">Client Reviews</h2>
+            <button className="write-review">Write a review</button>
+          </div>
+
+          <div className="reviews-grid">
+            {/* Review 1 */}
+            <div className="review-card">
+              <div className="stars">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} fill="#c5a059" color="#c5a059" />
+                ))}
+              </div>
+              <p className="comment">
+                "The quality of the fabric is exceptional. It fits perfectly and
+                the packaging was pure luxury."
+              </p>
+              <span className="author">— Sophia R.</span>
+            </div>
+
+            {/* Review 2 */}
+            <div className="review-card">
+              <div className="stars">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} fill="#c5a059" color="#c5a059" />
+                ))}
+              </div>
+              <p className="comment">
+                "Impeccable tailoring. You can feel the craftsmanship in every
+                stitch. Definitely worth the investment."
+              </p>
+              <span className="author">— Marcus V.</span>
+            </div>
+
+            {/* Review 3 */}
+            <div className="review-card">
+              <div className="stars">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} size={14} fill="#c5a059" color="#c5a059" />
+                ))}
+              </div>
+              <p className="comment">
+                "The customer service was as premium as the product. The
+                shipping was incredibly fast and the unboxing experience was
+                10/10."
+              </p>
+              <span className="author">— Isabella L.</span>
+            </div>
+
+            {/* Review 4 */}
+            <div className="review-card">
+              <div className="stars">
+                {[...Array(4)].map((_, i) => (
+                  <Star key={i} size={14} fill="#c5a059" color="#c5a059" />
+                ))}
+                <Star size={14} color="#c5a059" /> {/* 4-star example */}
+              </div>
+              <p className="comment">
+                "Beautiful silhouette and drape. It runs slightly larger than
+                expected, but the exchange process was seamless."
+              </p>
+              <span className="author">— Julian K.</span>
+            </div>
+          </div>
+        </section>
 
         {/* SIMILAR PRODUCTS */}
         {similarProducts?.length > 0 && (
@@ -276,6 +362,7 @@ const ProductVeiw = () => {
           </section>
         )}
       </main>
+      <Footer/>
     </div>
   );
 };

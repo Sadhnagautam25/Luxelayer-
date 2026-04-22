@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import ProductCard from "../components/ProductCard";
 import useProduct from "../Hooks/useProduct";
 import { searchProductsApi } from "../services/search.api.service";
+import Footer from "../components/Footer";
 
 const LuxeLayerHome = () => {
   const { handleGetAllProducts } = useProduct();
@@ -52,6 +53,7 @@ const LuxeLayerHome = () => {
   };
 
   return (
+   <>
     <div className="luxelayer-container">
       {/* Navbar */}
       <Navbar onSearch={handleSearch} onEnterSearch={handleEnterSearch} />
@@ -88,6 +90,8 @@ const LuxeLayerHome = () => {
         )}
       </main>
     </div>
+    <Footer/>
+   </>
   );
 };
 

@@ -1,54 +1,71 @@
-// Refined Palette
 @import "../styles/LuxeLayerVariables.scss";
+
 .editModalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba($black, 0.85); // Professional deep overlay
+  backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 1.5rem;
+  animation: modalFadeIn 0.3s ease;
 
   .editModal {
     background: $surface-100;
     width: 100%;
-    max-width: 650px;
+    max-width: 680px;
     max-height: 90vh;
-    border-radius: 16px;
-    border: 1px solid $border-light;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    border: 1px solid rgba($primary-gold, 0.2);
+    box-shadow: $shadow-premium;
     overflow-y: auto;
     color: $text-primary;
+    position: relative;
+
+    // Custom Scrollbar
+    &::-webkit-scrollbar { width: 4px; }
+    &::-webkit-scrollbar-thumb { background: $surface-300; border-radius: 10px; }
 
     .editModalHeader {
       padding: 1.5rem 2rem;
-      border-bottom: 1px solid $border-light;
+      border-bottom: 1px solid $surface-300;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      background: $surface-100;
+      background: rgba($surface-100, 0.95);
+      backdrop-filter: blur(5px);
       z-index: 2;
 
       h2 {
-        font-size: 1.25rem;
-        font-weight: 600;
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 500;
         margin: 0;
         color: $primary-gold;
+        letter-spacing: 0.5px;
       }
 
       button {
         background: $surface-200;
-        border: none;
+        border: 1px solid $surface-300;
         color: $text-secondary;
-        padding: 8px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         cursor: pointer;
-        transition: 0.2s;
-        &:hover { color: #fff; background: $surface-300; }
+        transition: $transition-fast;
+
+        &:hover { 
+          color: $white; 
+          background: $danger-red; 
+          transform: rotate(90deg);
+        }
       }
     }
 
@@ -56,119 +73,206 @@
       padding: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1.5rem;
 
-      // Clean Label/Section titles
       .sectionTitle {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        color: $text-secondary;
-        margin-top: 10px;
+        letter-spacing: 2px;
+        color: $primary-gold;
+        font-weight: 700;
+        margin-bottom: -5px;
         display: block;
       }
 
       input, textarea, select {
         background: $surface-200;
-        border: 1px solid $border-light;
-        border-radius: 10px;
-        padding: 0.85rem 1rem;
+        border: 1px solid $surface-300;
+        padding: 0.9rem 1.2rem;
         color: $text-primary;
         font-size: 0.95rem;
         width: 100%;
-        transition: border-color 0.2s;
+        transition: $transition-smooth;
 
         &:focus {
           outline: none;
           border-color: $primary-gold;
+          background: $surface-300;
+          box-shadow: 0 0 0 4px rgba($primary-gold, 0.1);
         }
 
-        &::placeholder { color: #555; }
+        &::placeholder { color: $text-muted; opacity: 0.5; }
       }
+
+      textarea { min-height: 100px; resize: none; }
 
       .sizeRow {
         display: flex;
-        gap: 10px;
-        background: rgba(255,255,255,0.03);
-        padding: 8px;
-        border-radius: 10px;
+        align-items: center;
+        gap: 12px;
+        background: rgba($black, 0.2);
+        padding: 10px 15px;
+        border: 1px solid $surface-300;
+        transition: $transition-fast;
+
+        &:hover { border-color: $accent-gold; }
         
         input:first-child { 
-          width: 80px; 
+          width: 60px; 
           background: transparent; 
           border: none; 
-          color: $primary-gold;
-          font-weight: 600;
+          color: $gold-light;
+          font-weight: 700;
+          font-size: 0.9rem;
+          padding: 0;
+          pointer-events: none; // Label portion
+        }
+
+        input:last-child {
+          background: transparent;
+          border-bottom: 1px solid $surface-300;
+          padding: 5px 0;
+          &:focus { border-color: $primary-gold; background: transparent; }
         }
       }
 
       .imageGrid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 12px;
+        gap: 15px;
 
         .imgCard {
-          aspect-ratio: 1;
-          border-radius: 12px;
+          aspect-ratio: 3/4; // Fashion aspect ratio
           overflow: hidden;
           background: $surface-200;
           position: relative;
-          border: 1px solid $border-light;
+          border: 1px solid $surface-300;
+          transition: $transition-smooth;
+
+          &:hover { 
+            transform: translateY(-3px);
+            border-color: $primary-gold;
+            box-shadow: $shadow-soft;
+          }
 
           img { width: 100%; height: 100%; object-fit: cover; }
 
           button {
             position: absolute;
-            top: 5px;
-            right: 5px;
-            background: rgba(255, 77, 77, 0.2);
-            color: $error-red;
+            top: 6px;
+            right: 6px;
+            background: rgba($black, 0.6);
+            color: $white;
             border: none;
-            padding: 4px;
-            border-radius: 6px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
             backdrop-filter: blur(4px);
             cursor: pointer;
-            &:hover { background: $error-red; color: white; }
+            transition: 0.2s;
+            &:hover { background: $error-red; transform: scale(1.1); }
           }
         }
       }
 
       input[type="file"] {
-        border: 2px dashed $border-light;
-        padding: 2rem;
+        border: 2px dashed $surface-300;
+        padding: 2.5rem 1.5rem;
         text-align: center;
-        background: transparent;
+        background: rgba($white, 0.02);
         cursor: pointer;
-        &:hover { border-color: $primary-gold; background: rgba(255,255,255,0.02); }
+        color: $text-secondary;
+        font-size: 0.85rem;
+        
+        &:hover { 
+          border-color: $primary-gold; 
+          background: rgba($primary-gold, 0.05);
+          color: $white;
+        }
       }
 
       .updateBtn {
-        background: $primary-gold;
-        color: #1a1a1a;
-        padding: 1rem;
+        background: $gold-gradient;
+        color: $dark;
+        padding: 1.1rem;
         border: none;
-        border-radius: 10px;
         font-weight: 700;
         font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
         cursor: pointer;
-        transition: transform 0.2s, opacity 0.2s;
+        transition: $transition-smooth;
+        box-shadow: 0 10px 20px rgba($black, 0.2);
         margin-top: 1rem;
 
-        &:hover { opacity: 0.9; transform: translateY(-1px); }
+        &:hover { 
+          transform: translateY(-2px); 
+          box-shadow: 0 15px 30px rgba($primary-gold, 0.2);
+        }
+        
         &:active { transform: translateY(0); }
-        &:disabled { background: #444; color: #888; cursor: not-allowed; }
+        
+        &:disabled { 
+          background: $surface-300; 
+          color: $text-muted; 
+          cursor: not-allowed;
+          box-shadow: none;
+          transform: none;
+        }
       }
 
-      .errorText { color: $error-red; font-size: 0.8rem; margin-top: -10px; }
+      .errorText { 
+        color: $error-red; 
+        font-size: 0.8rem; 
+        margin-top: -8px;
+        font-weight: 500;
+      }
     }
   }
 }
 
-// Responsive
-@media (max-width: 500px) {
+// Keyframes
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+// Professional Responsive Logic
+@media (max-width: 600px) {
+  .editModalOverlay {
+    padding: 1rem;
+    
+    .editModal { 
+      max-height: 95vh; 
+    }
+    
+    .editModalHeader {
+      padding: 1.2rem 1.5rem;
+      h2 { font-size: 1.2rem; }
+    }
+
+    .editForm { 
+      padding: 1.5rem;
+      gap: 1.2rem;
+      
+      .updateBtn {
+        padding: 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
   .editModalOverlay {
     padding: 0;
-    .editModal { border-radius: 0; height: 100%; max-height: 100vh; }
-    .editForm { padding: 1.25rem; }
+    .editModal { 
+      height: 100vh; 
+      max-height: 100vh; 
+    }
   }
 }

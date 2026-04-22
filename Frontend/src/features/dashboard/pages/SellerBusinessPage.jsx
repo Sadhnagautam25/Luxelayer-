@@ -148,7 +148,7 @@ const SellerBusinessPage = () => {
               </div>
             </header>
 
-            {/* STATS */}
+            {/* STATUS */}
             <section className="analytics-bar">
               <div className="stat-card">
                 <label>Products</label>

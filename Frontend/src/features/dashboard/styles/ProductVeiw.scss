@@ -1,14 +1,8 @@
 @import "../styles/LuxeLayerVariables.scss";
 
-// Premium Theme Variables
-$luxury-black: #111111;
-$luxury-gold: #c5a059;
-$soft-white: #ffffff;
-$bg-gray: #f9f9f9;
-$border-color: #eeeeee;
-
 .product-page {
-  background: $soft-white;
+  background: $white;
+  color: $text-main;
 }
 
 .product-view-container {
@@ -17,7 +11,7 @@ $border-color: #eeeeee;
   padding: 0 5%;
 
   .view-header {
-    padding: 20px 0;
+    padding: 30px 0;
     .back-btn {
       background: none;
       border: none;
@@ -28,11 +22,11 @@ $border-color: #eeeeee;
       text-transform: uppercase;
       font-size: 11px;
       letter-spacing: 2px;
-      color: $luxury-black;
-      transition: 0.3s;
+      color: $text-light;
+      transition: $transition-fast;
       &:hover {
+        color: $primary-gold;
         transform: translateX(-5px);
-        color: $luxury-gold;
       }
     }
   }
@@ -41,85 +35,72 @@ $border-color: #eeeeee;
 .product-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  margin-bottom: 80px;
+  gap: 60px;
+  margin-bottom: 100px;
 
   @media (min-width: 1024px) {
     flex-direction: row;
-    align-items: flex-start;
+    gap: 80px;
   }
 }
 
 // IMAGE SECTION
 .image-section {
-  flex: 1.5;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-
+  flex: 1.2;
   .main-stage {
     position: relative;
-    background: $bg-gray;
-    overflow: hidden;
-    max-width: 700px;
-  width: 100%;
-  aspect-ratio: 11 / 12;
+    background: $pearl;
+    aspect-ratio: 10 / 12;
+    box-shadow: $shadow-soft;
 
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      &.fade-in {
-        animation: imgFade 0.6s ease;
-      }
     }
 
     .nav-arrow {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba($white, 0.8);
+      background: $bg-overlay;
       border: none;
-      width: 45px;
-      height: 45px;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: 0.3s;
-      z-index: 10;
+      transition: $transition-smooth;
       &:hover {
-        background: $white;
-        color: $luxury-gold;
+        color: $primary-gold;
       }
       &.prev {
-        left: 15px;
+        left: 0;
       }
       &.next {
-        right: 15px;
+        right: 0;
       }
     }
   }
 
   .thumbnail-strip {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
+    gap: 15px;
+    margin-top: 20px;
     .thumb {
       width: 80px;
       height: 100px;
       cursor: pointer;
-      opacity: 0.5;
-      transition: 0.3s;
+      border: 1px solid transparent;
+      transition: $transition-fast;
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
-      &.active,
-      &:hover {
-        opacity: 1;
-        border-bottom: 2px solid $luxury-gold;
+      &.active {
+        border-color: $primary-gold;
       }
     }
   }
@@ -129,74 +110,70 @@ $border-color: #eeeeee;
 .details-section {
   flex: 1;
 
-  .sticky-content {
-    @media (min-width: 1024px) {
-      position: sticky;
-      top: 120px;
-    }
-  }
-
   .brand-header {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     .category {
-      font-size: 11px;
-      color: $luxury-gold;
+      font-size: 12px;
+      color: $primary-gold;
       letter-spacing: 3px;
       text-transform: uppercase;
       font-weight: 700;
     }
+    .rating-summary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 10px;
+      font-size: 13px;
+      color: $text-muted;
+    }
     .title {
       font-family: "Playfair Display", serif;
-      font-size: 32px;
-      margin: 10px 0;
+      font-size: clamp(28px, 4vw, 42px);
+      margin: 15px 0;
       font-weight: 400;
-    }
-    .seller {
-      font-style: italic;
-      color: #777;
-      font-size: 14px;
     }
   }
 
   .price-tag {
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 300;
     margin-bottom: 30px;
-    letter-spacing: 1px;
+    color: $text-dark;
   }
 
   .description {
     line-height: 1.8;
-    color: #555;
+    color: $text-muted;
     font-size: 15px;
-    margin-bottom: 30px;
     padding-bottom: 30px;
-    border-bottom: 1px solid $border-color;
+    border-bottom: 1px solid $border-soft;
   }
 
   .size-group {
-    margin-bottom: 40px;
+    margin: 40px 0;
     .label {
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 1px;
       font-weight: 600;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
     .chips {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       .size-chip {
-        width: 55px;
-        height: 45px;
-        border: 1px solid #ddd;
-        background: transparent;
+        min-width: 60px;
+        height: 50px;
+        border: 1px solid $border-light;
+        background: $white;
         cursor: pointer;
-        transition: 0.3s;
-        &.active,
-        &:hover {
-          border-color: $luxury-black;
-          background: $luxury-black;
+        transition: $transition-fast;
+        &:hover,
+        &.active {
+          background: $dark;
           color: $white;
+          border-color: $dark;
         }
       }
     }
@@ -205,40 +182,31 @@ $border-color: #eeeeee;
   .cta-block {
     display: flex;
     gap: 15px;
-    margin-bottom: 40px;
+    margin-bottom: 50px;
     .add-to-cart-btn {
       flex: 1;
-      height: 60px;
-      background: $luxury-black;
+      height: 65px;
+      background: $dark;
       color: $white;
       border: none;
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 13px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: 0.3s;
+      transition: $transition-smooth;
       &:hover {
-        background: #333;
+        background: $primary-gold;
       }
     }
     .wish-btn {
-      width: 60px;
-      height: 60px;
-      border: 1px solid #ddd;
+      width: 65px;
+      border: 1px solid $border-light;
       background: none;
       cursor: pointer;
-      transition: 0.3s;
-      &:hover {
-        border-color: #ffbaba;
-        color: #ff4d4d;
-      }
+      transition: $transition-fast;
       &.active {
-        color: #ff4d4d;
-        border-color: #ffbaba;
+        color: $danger-red;
+        border-color: $danger-red;
       }
     }
   }
@@ -246,85 +214,166 @@ $border-color: #eeeeee;
   .trust-footer {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding-top: 30px;
-    border-top: 1px solid $border-color;
+    gap: 20px;
+    padding: 30px;
+    background: $pearl;
+    border-radius: 4px;
+
     .item {
       display: flex;
-      align-items: center;
-      gap: 12px;
+      align-items: flex-start;
+      gap: 15px;
       font-size: 13px;
-      color: #444;
+      color: $text-main;
+
+      svg {
+        color: $primary-gold;
+        flex-shrink: 0;
+      }
+      span {
+        line-height: 1.4;
+        strong {
+          display: block;
+          font-size: 11px;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+      }
     }
   }
 }
 
-// SIMILAR PRODUCTS
+// REVIEWS SECTION
+.reviews-section {
+  padding-top: 10px;
+  border-top: 1px solid $border-soft;
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; // Aligns button to baseline of text
+    margin-bottom: 50px;
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      margin: 0;
+    }
+
+    .write-review {
+      background: none;
+      border: none;
+      border-bottom: 1px solid $text-dark;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      cursor: pointer;
+      padding-bottom: 5px;
+      transition: $transition-fast;
+
+      &:hover {
+        color: $primary-gold;
+        border-color: $primary-gold;
+      }
+    }
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr; // Mobile: 1 column
+    gap: 30px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr); // Tablet/Desktop: 2 columns
+    }
+
+    @media (min-width: 1200px) {
+      grid-template-columns: repeat(4, 1fr); // Wide screen: 4 columns
+    }
+  }
+
+  .review-card {
+    background: $pearl;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: $transition-smooth;
+    border: 1px solid transparent;
+
+    &:hover {
+      background: $white;
+      border-color: $border-soft;
+      box-shadow: $shadow-soft;
+      transform: translateY(-5px);
+    }
+
+    .stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    .comment {
+      font-size: 14px;
+      line-height: 1.6;
+      color: $text-main;
+      font-style: italic;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+
+    .author {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: $text-light;
+    }
+  }
+}
+
+// SIMILAR SECTION
 .similar-section {
-  padding: 80px 0;
-  border-top: 1px solid $border-color;
+  padding: 100px 0;
+  border-top: 1px solid $border-soft;
   .section-title {
     font-family: "Playfair Display", serif;
     text-align: center;
-    margin-bottom: 50px;
-    font-size: 28px;
+    margin-bottom: 60px;
+    font-size: 32px;
   }
-
   .similar-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 30px;
     .similar-card {
       cursor: pointer;
       .card-img {
         aspect-ratio: 3/4;
         overflow: hidden;
-        background: $bg-gray;
-        margin-bottom: 15px;
+        background: $pearl;
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          transition: 0.6s;
-        }
-      }
-      .card-info {
-        h4 {
-          font-size: 14px;
-          font-weight: 500;
-          margin-bottom: 5px;
-        }
-        p {
-          font-size: 13px;
-          color: $luxury-gold;
+          transition: $transition-slow;
         }
       }
       &:hover .card-img img {
-        transform: scale(1.05);
+        transform: scale(1.08);
+      }
+      .card-info {
+        padding: 15px 0;
+        h4 {
+          font-size: 15px;
+          margin-bottom: 8px;
+        }
+        p {
+          color: $primary-gold;
+          font-weight: 600;
+        }
       }
     }
   }
-}
-
-@keyframes imgFade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-.loader {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Playfair Display", serif;
-  letter-spacing: 10px;
-  font-size: 2rem;
 }

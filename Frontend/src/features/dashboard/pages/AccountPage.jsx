@@ -24,6 +24,7 @@ import CreateBusinessAccount from "../components/account_page_comp/CreateBusines
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../auth/Hooks/useAuth";
+import Footer from "../components/Footer"
 
 const AccountPage = () => {
   const [activeTab, setActiveTab] = useState("personal");
@@ -71,6 +72,7 @@ const AccountPage = () => {
   };
 
   return (
+   <>
     <div className="account-page">
       {/* Premium Navbar */}
       <nav className="account-navbar">
@@ -183,6 +185,8 @@ const AccountPage = () => {
         </div>
       </div>
     </div>
+    <Footer/>
+   </>
   );
 };
 

@@ -149,7 +149,7 @@ const EditProductModal = ({ productId, onClose }) => {
   return (
     <div className="editModalOverlay">
       <div className="editModal">
-        {/* Header */}
+        {/* Header */} 
         <div className="editModalHeader">
           <h2>Edit Product</h2>
 

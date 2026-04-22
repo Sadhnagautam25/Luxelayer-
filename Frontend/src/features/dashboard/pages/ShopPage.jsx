@@ -5,7 +5,8 @@ import { useSelector } from "react-redux";
 import useProduct from "../Hooks/useProduct";
 import "../styles/ShopPage.scss";
 import { useNavigate } from "react-router-dom";
-import LoadingLoader from "../components/LoadingLoder"
+import LoadingLoader from "../components/LoadingLoder";
+import Footer from "../components/Footer";
 
 const ShopPage = () => {
   const { handleCategoryProduct } = useProduct();
@@ -66,7 +67,7 @@ const ShopPage = () => {
 
       {/* Products */}
       <div className="shop-products">
-        {loading && <LoadingLoader/> }
+        {loading && <LoadingLoader />}
 
         {error && <p>{error}</p>}
 
@@ -98,6 +99,8 @@ const ShopPage = () => {
             <p>No Products Found</p>
           )}
       </div>
+
+      <Footer />
     </>
   );
 };

@@ -4,7 +4,7 @@
 .address-page {
   max-width: 1200px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 20px;
   background-color: $soft-pearl;
   font-family: "Inter", sans-serif;
 
@@ -320,7 +320,8 @@
 // --- Responsive ---
 @media (max-width: 768px) {
   .address-page {
-    margin: 20px auto;
+    margin: 0px;
+    
 
     h2 {
       font-size: 1.8rem;
